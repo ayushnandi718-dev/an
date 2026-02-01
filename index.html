@@ -602,6 +602,57 @@
     50% { transform: scale(1.05); }
 }
 </style>
+    <canvas id="bg-canvas"></canvas>
+
+<script>
+const canvas = document.getElementById("bg-canvas");
+const ctx = canvas.getContext("2d");
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener("resize", resize);
+
+canvas.style.position = "fixed";
+canvas.style.inset = "0";
+canvas.style.zIndex = "-1";
+
+const stars = Array.from({ length: 200 }, () => ({
+  x: Math.random() * canvas.width,
+  y: Math.random() * canvas.height,
+  z: Math.random() * canvas.width
+}));
+
+function animate() {
+  ctx.fillStyle = "#09090b";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  for (const s of stars) {
+    s.z -= 2;
+    if (s.z <= 0) {
+      s.z = canvas.width;
+      s.x = Math.random() * canvas.width;
+      s.y = Math.random() * canvas.height;
+    }
+
+    const k = 128 / s.z;
+    const px = s.x * k + canvas.width / 2;
+    const py = s.y * k + canvas.height / 2;
+
+    if (px >= 0 && px <= canvas.width && py >= 0 && py <= canvas.height) {
+      const size = (1 - s.z / canvas.width) * 2;
+      ctx.fillStyle = "rgba(180,200,255,0.8)";
+      ctx.fillRect(px, py, size, size);
+    }
+  }
+
+  requestAnimationFrame(animate);
+}
+animate();
+</script>
+
 
 
 </body>
