@@ -602,7 +602,7 @@
     50% { transform: scale(1.05); }
 }
 </style>
-    <canvas id="bg-canvas"></canvas>
+   <canvas id="bg-canvas"></canvas>
 
 <script>
 const canvas = document.getElementById("bg-canvas");
@@ -615,22 +615,30 @@ function resize() {
 resize();
 window.addEventListener("resize", resize);
 
+/* Canvas position */
 canvas.style.position = "fixed";
-canvas.style.inset = "0";
-canvas.style.zIndex = "-1";
+canvas.style.top = "0";
+canvas.style.left = "0";
+canvas.style.width = "100%";
+canvas.style.height = "100%";
+canvas.style.zIndex = "0";
+canvas.style.pointerEvents = "none";
 
-const stars = Array.from({ length: 200 }, () => ({
+/* Stars */
+const stars = Array.from({ length: 250 }, () => ({
   x: Math.random() * canvas.width,
   y: Math.random() * canvas.height,
   z: Math.random() * canvas.width
 }));
 
 function animate() {
-  ctx.fillStyle = "#09090b";
+  /* Slight transparent background for trail */
+  ctx.fillStyle = "rgba(9, 9, 11, 0.5)";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   for (const s of stars) {
     s.z -= 2;
+
     if (s.z <= 0) {
       s.z = canvas.width;
       s.x = Math.random() * canvas.width;
@@ -642,16 +650,18 @@ function animate() {
     const py = s.y * k + canvas.height / 2;
 
     if (px >= 0 && px <= canvas.width && py >= 0 && py <= canvas.height) {
-      const size = (1 - s.z / canvas.width) * 2;
-      ctx.fillStyle = "rgba(180,200,255,0.8)";
+      const size = (1 - s.z / canvas.width) * 2.5;
+      ctx.fillStyle = "rgba(220,230,255,1)";
       ctx.fillRect(px, py, size, size);
     }
   }
 
   requestAnimationFrame(animate);
 }
+
 animate();
 </script>
+
 
 
 
