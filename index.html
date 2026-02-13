@@ -326,7 +326,7 @@
                             </div>
                             <div class="flex-1 w-full text-center md:text-left">
                                 <div class="flex flex-col md:flex-row items-center md:items-end gap-1 md:gap-4 mb-3">
-                                    <h3 class="text-lg md:text-2xl font-light text-zinc-100 tracking-wide uppercase">raw.vibing.aura</h3>
+                                    <h3 class="text-lg md:text-2xl font-light text-zinc-100 tracking-wide uppercase">rva.creates</h3>
                                     <span class="text-[10px] tracking-[0.2em] text-zinc-600 uppercase">2023 — Present</span>
                                 </div>
                                 <div class="mb-6">
@@ -334,7 +334,7 @@
                                     <p class="text-zinc-600 text-[10px] tracking-widest uppercase mt-1">Personal Archive</p>
                                 </div>
                                 <div class="flex flex-wrap items-center justify-center md:justify-start gap-3">
-                                    <a href="https://www.instagram.com/raw.vibing.aura/" target="_blank" class="p-4 bg-zinc-800/50 rounded-xl border border-zinc-800 hover:border-zinc-400 active:scale-90 transition-all"><i data-lucide="instagram" class="text-zinc-300"></i></a>
+                                    <a href="https://www.instagram.com/rva.creates/#" target="_blank" class="p-4 bg-zinc-800/50 rounded-xl border border-zinc-800 hover:border-zinc-400 active:scale-90 transition-all"><i data-lucide="instagram" class="text-zinc-300"></i></a>
                                     <a href="https://www.facebook.com/share/174dvmS6aU/" target="_blank" class="p-4 bg-zinc-800/50 rounded-xl border border-zinc-800 hover:border-blue-500 active:scale-90 transition-all"><i data-lucide="facebook" class="text-zinc-300"></i></a>
                                     <a href="https://www.linkedin.com/in/ayush-nandi-apdj-india" target="_blank" class="p-4 bg-zinc-800/50 rounded-xl border border-zinc-800 hover:border-blue-400 active:scale-90 transition-all"><i data-lucide="linkedin" class="text-blue-400"></i></a>
                                     <a href="https://github.com/ayushnandi718-dev" target="_blank" class="p-4 bg-zinc-800/50 rounded-xl border border-zinc-800 hover:border-white active:scale-90 transition-all"><i data-lucide="github" class="text-zinc-300"></i></a>
@@ -505,7 +505,7 @@
                 <p class="text-zinc-500 text-sm font-light uppercase tracking-widest">© 2026 AYUSH NANDI. Crafted with intentionality.</p>
             </div>
             <div class="flex gap-8 justify-center items-center">
-                <a href="https://www.instagram.com/raw.vibing.aura/" target="_blank" class="text-zinc-400 hover:text-white transition-colors"><i data-lucide="instagram"></i></a>
+                <a href="https://www.instagram.com/rva.creates/#" target="_blank" class="text-zinc-400 hover:text-white transition-colors"><i data-lucide="instagram"></i></a>
                 <a href="https://www.linkedin.com/in/ayush-nandi-apdj-india" target="_blank" class="text-zinc-400 hover:text-white transition-colors"><i data-lucide="linkedin"></i></a>
                 <a href="https://github.com/ayushnandi718-dev" target="_blank" class="text-zinc-400 hover:text-white transition-colors"><i data-lucide="github"></i></a>
             </div>
@@ -602,67 +602,6 @@
     50% { transform: scale(1.05); }
 }
 </style>
-   <canvas id="bg-canvas"></canvas>
-
-<script>
-const canvas = document.getElementById("bg-canvas");
-const ctx = canvas.getContext("2d");
-
-function resize() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-}
-resize();
-window.addEventListener("resize", resize);
-
-/* Canvas position */
-canvas.style.position = "fixed";
-canvas.style.top = "0";
-canvas.style.left = "0";
-canvas.style.width = "100%";
-canvas.style.height = "100%";
-canvas.style.zIndex = "0";
-canvas.style.pointerEvents = "none";
-
-/* Stars */
-const stars = Array.from({ length: 250 }, () => ({
-  x: Math.random() * canvas.width,
-  y: Math.random() * canvas.height,
-  z: Math.random() * canvas.width
-}));
-
-function animate() {
-  /* Slight transparent background for trail */
-  ctx.fillStyle = "rgba(9, 9, 11, 0.5)";
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-  for (const s of stars) {
-    s.z -= 2;
-
-    if (s.z <= 0) {
-      s.z = canvas.width;
-      s.x = Math.random() * canvas.width;
-      s.y = Math.random() * canvas.height;
-    }
-
-    const k = 128 / s.z;
-    const px = s.x * k + canvas.width / 2;
-    const py = s.y * k + canvas.height / 2;
-
-    if (px >= 0 && px <= canvas.width && py >= 0 && py <= canvas.height) {
-      const size = (1 - s.z / canvas.width) * 2.5;
-      ctx.fillStyle = "rgba(220,230,255,1)";
-      ctx.fillRect(px, py, size, size);
-    }
-  }
-
-  requestAnimationFrame(animate);
-}
-
-animate();
-</script>
-
-
 
 
 </body>
